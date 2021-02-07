@@ -1,6 +1,7 @@
 window.onload = function () {
   const foodItemWrap = document.getElementById("foodItemWrap");
   const mealSearchInput = document.getElementById("mealSearchInput");
+  const searchBtn = document.getElementById("searchBtn");
 
   if (foodItemWrap.classList.contains("detail"))
     foodItemWrap.classList.remove("detail");
@@ -33,26 +34,12 @@ window.onload = function () {
   mealSearchInput.addEventListener("keyup", function (event) {
     // console.log(event.target.value);
     let value = event.target.value;
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${value}`)
-      .then((res) => res.json())
-      .then((data) => {
-        displayMeal(data.meals);
-      })
-      .catch((err) => {
-        // console.log("Search time error: ", err);
-        // if item not found
-        let itemNotFoundHTML = `
-        <div class="offset-sm-3 col-sm-6 text-center mt-5 pb-5">
+    searchMeal(value);
+  });
 
-        <h2 class="text-danger">
-        Sorry :(
-        <br/>
-        Meal Not Found!</h2>
-        <p class="ingredients-title"><a class="btn btn-sm btn-success d-block mt-5"  href="./"> Home </a></p>
-      </div> 
-        `;
-        foodItemWrap.innerHTML = itemNotFoundHTML;
-      });
+  searchBtn.addEventListener("click", () => {
+    let value = mealSearchInput.value;
+    searchMeal(value);
   });
 
   // Display Meal
@@ -98,5 +85,28 @@ window.onload = function () {
     </div>
     `;
     foodItemWrap.innerHTML = mealDetailsHTML;
+  }
+
+  function searchMeal(value) {
+    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${value}`)
+      .then((res) => res.json())
+      .then((data) => {
+        displayMeal(data.meals);
+      })
+      .catch((err) => {
+        // console.log("Search time error: ", err);
+        // if item not found
+        let itemNotFoundHTML = `
+        <div class="offset-sm-3 col-sm-6 text-center mt-5 pb-5">
+
+        <h2 class="text-danger">
+        Sorry :(
+        <br/>
+        Meal Not Found!</h2>
+        <p class="ingredients-title"><a class="btn btn-sm btn-success d-block mt-5"  href="./"> Home </a></p>
+      </div> 
+        `;
+        foodItemWrap.innerHTML = itemNotFoundHTML;
+      });
   }
 };
