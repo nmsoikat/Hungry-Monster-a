@@ -1,0 +1,166 @@
+* {
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+ul {
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+body {
+  font-size: 16px;
+}
+/* -------------------------------------------------------------------------- */
+
+/* ------------ Menu Area -------------- */
+
+.logo {
+  width: 100px;
+}
+
+.menu {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.menu li {
+  display: inline-block;
+}
+
+.menu li a {
+  display: block;
+  padding: 15px 20px;
+  color: #333;
+}
+
+.main-nav-area {
+  height: 80px;
+  line-height: 40px;
+  margin-top: 15px;
+}
+
+.menu li a:hover {
+  color: #f06c4e;
+}
+
+/* ------------- Search Area ------------------- */
+
+.search-bar {
+  display: flex;
+}
+.search-bar img {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  margin-top: 5px;
+}
+.search-bar input {
+  border: none;
+  background: transparent;
+}
+.search-bar {
+  background-color: #f8f7f5;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 6px;
+}
+.search-bar input:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+.search-button {
+  background-color: #f06c4e;
+  line-height: 29px;
+  margin-top: -7px;
+  margin-bottom: -7px;
+  margin-right: -7px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: #fff;
+  font-size: 20px;
+}
+.search-button:hover{
+  color:#fff;
+}
+.search-area {
+  margin: 60px 0px;
+}
+
+/* ----------- Food Item ----------- */
+.food-item {
+  background-color: #f8f7f5;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  margin-bottom: 30px;
+  transition: .3s;
+}
+.food-item:hover{
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.food-item__name {
+  padding: 15px 5px;
+  font-size: 25px;
+  text-align: center;
+}
+
+
+/* --------- Food Item Detail -------- */
+
+.ingredients {
+  margin-left: 5px;
+}
+
+.ingredients li img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.detail .food-item{
+  background-color: #fff;
+  border: none;
+}
+.detail .food-item:hover{
+  box-shadow: none;
+  cursor: default;
+}
+
+.detail .food-item__name{
+  text-align: left;
+  font-size: 30px;
+}
+.detail .ingredients-title{
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+.detail .food-item__img {
+  height: 350px;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.detail .food-item__img img {
+  width: 100%;
+}
