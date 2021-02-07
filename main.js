@@ -1,24 +1,25 @@
 window.onload = function () {
   const foodItemWrap = document.getElementById("foodItemWrap");
+  const detailFoodItemWrap = document.getElementById("detailFoodItemWrap");
   const mealSearchInput = document.getElementById("mealSearchInput");
   const searchBtn = document.getElementById("searchBtn");
 
-  if (foodItemWrap.classList.contains("detail"))
-    foodItemWrap.classList.remove("detail");
+  // if (foodItemWrap.classList.contains("detail"))
+  //   foodItemWrap.classList.remove("detail");
 
   //---- Get all data for home page --------
-  fetch("https://www.themealdb.com/api/json/v1/1/filter.php?a=Canadian")
-    .then((res) => res.json())
-    .then((data) => displayMeal(data.meals))
-    .catch((err) => {
-      console.log("Homepage fetch time error: ", err);
-    });
+  // fetch("https://www.themealdb.com/api/json/v1/1/filter.php?a=Canadian")
+  //   .then((res) => res.json())
+  //   .then((data) => displayMeal(data.meals))
+  //   .catch((err) => {
+  //     console.log("Homepage fetch time error: ", err);
+  //   });
 
   //------- Show single item detail ---------
   foodItemWrap.addEventListener("click", function (event) {
     // console.log(event.target.parentElement.parentElement);
-    if (!foodItemWrap.classList.contains("detail"))
-      foodItemWrap.classList.add("detail");
+    // if (!foodItemWrap.classList.contains("detail"))
+    //   foodItemWrap.classList.add("detail");
 
     let parentElement = event.target.parentElement.parentElement;
     let datasetObj = { ...parentElement.dataset };
@@ -28,6 +29,9 @@ window.onload = function () {
       .then((res) => res.json())
       .then((data) => displayMealDetails(data.meals[0]))
       .catch((err) => console.log("Detail view time error: ", err));
+
+    // scroll top
+    console.log(window.scrollTo(0, 0));
   });
 
   //--------- Search by name -----------
@@ -63,7 +67,7 @@ window.onload = function () {
 
   // Display Meal Detail
   function displayMealDetails(mealDetail) {
-    console.log(mealDetail);
+    // console.log(mealDetail);
     const mealDetailsHTML = `
     <div class="offset-sm-3 col-sm-6">
       <div id="foodItem" class="food-item" data-mealId="${mealDetail.idMeal}">
@@ -80,11 +84,11 @@ window.onload = function () {
           <li><img src="./img/checkmark-square.png">${mealDetail.strIngredient5}</li>
           <li><img src="./img/checkmark-square.png">${mealDetail.strIngredient6}</li>
         </ul>
-        <p class="ingredients-title"><a class="btn btn-sm btn-success d-block mt-5"  href="./"> Home </a></p>
+        <!--<p class="ingredients-title"><a class="btn btn-sm btn-success d-block mt-5"  href="./"> Home </a></p> -->
       </div>
     </div>
     `;
-    foodItemWrap.innerHTML = mealDetailsHTML;
+    detailFoodItemWrap.innerHTML = mealDetailsHTML;
   }
 
   function searchMeal(value) {
@@ -92,6 +96,7 @@ window.onload = function () {
       .then((res) => res.json())
       .then((data) => {
         displayMeal(data.meals);
+        detailFoodItemWrap.innerHTML = ""; // search time detail off
       })
       .catch((err) => {
         // console.log("Search time error: ", err);
